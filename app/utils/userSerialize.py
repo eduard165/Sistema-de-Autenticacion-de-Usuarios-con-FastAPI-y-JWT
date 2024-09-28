@@ -5,5 +5,4 @@ def serialize_user(user):
         "id": str(user["_id"]),
         "username": user["username"],
         "email": user["email"]
-        # Agrega otros campos si es necesario
     }

@@ -40,7 +40,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     
     mongo_client = get_mongo_client()
     print (f"{mongo_client}")
-    # Asegúrate de que mongo_client sea la instancia correcta
     user = await mongo_client.user_database.users.find_one({"username": token_data.username})
     if user is None:
         raise credentials_exception

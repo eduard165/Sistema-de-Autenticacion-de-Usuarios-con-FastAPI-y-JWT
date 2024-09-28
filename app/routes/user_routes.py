@@ -11,13 +11,9 @@ user_router = APIRouter()
 
 @user_router.post("/register/")
 async def register_user(user: UserCreate):
-    # Llamamos a get_mongo_client() aquí dentro
     mongo_client = get_mongo_client()  
     print(f"User: {mongo_client}")
-    
-    # Accedemos a la base de datos y la colección
     existing_user = await mongo_client.user_database.users.find_one({"email": user.email})
-    
     if existing_user:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
     
